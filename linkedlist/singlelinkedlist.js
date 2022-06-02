@@ -83,7 +83,7 @@ class SingleLinkedList{
 
     set(val,index){
         if(index <0 || index >= this.length) return null;
-        node = get(index);
+        var node = this.get(index);
         if(node){
             node.value = val;
             return true;
@@ -93,8 +93,10 @@ class SingleLinkedList{
 
     insert(val,index){
         if(index <0 || index >= this.length) return false;
+        if(index === 0) return !!this.unshift(val);
+        if(index === this.length) return !!this.push(val);
         var node = new Node(val);
-        var prev = get(index-1);
+        var prev = this.get(index-1);
         node.next = prev.next;
         prev.next = node;
         this.length++
@@ -103,7 +105,9 @@ class SingleLinkedList{
 
     remove(index){
         if(index <0 || index >= this.length) return undefined;
-        node = get(index-1);
+        if(index === 0) return this.shift;
+        if(index ===length-1) return this.pop;
+        var node = this.get(index-1);
         var removed = node.next;
         node.next = removed.next;
         this.length--;
@@ -146,3 +150,16 @@ list.push(999)
 list.print()
 console.log(list.pop());
 list.print()
+console.log(list.shift());
+list.print();
+console.log(list.unshift(50));
+list.print();
+console.log(list.get(2));
+console.log(list.set(150,2));
+list.print();
+console.log(list.insert(175,3));
+list.print();
+console.log(list.remove(3))
+list.print();
+list.reverse();
+list.print();
